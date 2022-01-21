@@ -6,7 +6,7 @@
 //
 
 #import <Cordova/CDV.h>
-#import "XCDYouTubeVideoPlayerViewController.h"
+#import <XCDYouTubeKit/XCDYouTubeVideoPlayerViewController.h>
 
 @interface YoutubeVideoPlayer : CDVPlugin {
     NSString* _eventsCallbackId;

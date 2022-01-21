@@ -6,10 +6,20 @@
 //
 
 #import "YoutubeVideoPlayer.h"
-#import "XCDYouTubeKit.h"
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import <AVKit/AVKit.h>
+#import <Cordova/NSDictionary+CordovaPreferences.h>
 
 @implementation YoutubeVideoPlayer
+
+- (void)pluginInitialize
+{
+    NSString *api_key = [self.commandDelegate.settings cordovaSettingForKey:@"YouTubeDataApiKey"];
+
+    if (api_key != nil) {
+        [XCDYouTubeClient setInnertubeApiKey: api_key];
+    }
+}
 
 - (void)openVideo:(CDVInvokedUrlCommand*)command
 {

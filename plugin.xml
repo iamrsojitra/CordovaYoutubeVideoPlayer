@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-youtube-video-player" version="2.4.0">
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-youtube-video-player" version="2.4.1">
 
     <name>CordovaYoutubeVideoPlayer</name>
 
@@ -12,64 +12,65 @@
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
-        </engines>
+    </engines>
 
-        <js-module src="plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/www/YoutubeVideoPlayer.js" name="YoutubeVideoPlayer">
-            <clobbers target="YoutubeVideoPlayer"/>
-        </js-module>
+    <js-module src="plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/www/YoutubeVideoPlayer.js" name="YoutubeVideoPlayer">
+        <clobbers target="YoutubeVideoPlayer"/>
+    </js-module>
 
-        <platform name="android">
+    <platform name="android">
 
-            <config-file target="res/xml/config.xml" parent="widget">
-                <feature name="YoutubeVideoPlayer">
-                    <param name="android-package" value="com.bunkerpalace.cordova.YoutubeVideoPlayer"/>
-                </feature>
-            </config-file>
+        <config-file target="res/xml/config.xml" parent="widget">
+            <feature name="YoutubeVideoPlayer">
+                <param name="android-package" value="com.bunkerpalace.cordova.YoutubeVideoPlayer"/>
+            </feature>
+        </config-file>
 
-            <config-file target="AndroidManifest.xml" parent="/manifest">
-                <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-                <queries>
-                    <intent>
-                        <action android:name="com.google.android.youtube.api.service.START" />
-                    </intent>
-                </queries>
-            </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <queries>
+                <intent>
+                    <action android:name="com.google.android.youtube.api.service.START" />
+                </intent>
+            </queries>
+        </config-file>
 
-            <config-file target="AndroidManifest.xml" parent="/manifest/application">
-                <activity android:name="com.keyes.youtube.OpenYouTubePlayerActivity" android:screenOrientation="landscape"/>
-                <activity
-                    android:name="com.bunkerpalace.cordova.YouTubeActivity"
-                    android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
-                    android:label="@string/activity_name"
-                    android:launchMode="singleTop"
-                    android:theme="@android:style/Theme.Black.NoTitleBar"
-                    android:windowSoftInputMode="adjustResize"/>
-            </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.keyes.youtube.OpenYouTubePlayerActivity" android:screenOrientation="landscape"/>
+            <activity android:name="com.bunkerpalace.cordova.YouTubeActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:theme="@android:style/Theme.Black.NoTitleBar" android:windowSoftInputMode="adjustResize"/>
+        </config-file>
 
-            <source-file src="platforms/android/src/com/bunkerpalace/cordova/YouTubeActivity.java" target-dir="src/com/bunkerpalace/cordova"/>
-            <source-file src="platforms/android/src/com/bunkerpalace/cordova/YoutubeVideoPlayer.java" target-dir="src/com/bunkerpalace/cordova"/>
-            <lib-file src="platforms/android/libs/openyoutubeactivity.jar"/>
-            <lib-file src="platforms/android/libs/YouTubeAndroidPlayerApi.jar"/>
+        <source-file src="platforms/android/src/com/bunkerpalace/cordova/YouTubeActivity.java" target-dir="src/com/bunkerpalace/cordova"/>
+        <source-file src="platforms/android/src/com/bunkerpalace/cordova/YoutubeVideoPlayer.java" target-dir="src/com/bunkerpalace/cordova"/>
+        <lib-file src="platforms/android/libs/openyoutubeactivity.jar"/>
+        <lib-file src="platforms/android/libs/YouTubeAndroidPlayerApi.jar"/>
 
-        </platform>
+    </platform>
 
-        <platform name="ios">
+    <platform name="ios">
 
-            <config-file target="config.xml" parent="/*">
-                <feature name="YoutubeVideoPlayer">
-                    <param name="ios-package" value="YoutubeVideoPlayer"/>
-                </feature>
-            </config-file>
+        <config-file target="config.xml" parent="/*">
+            <feature name="YoutubeVideoPlayer">
+                <param name="ios-package" value="YoutubeVideoPlayer"/>
+            </feature>
+        </config-file>
 
-            
-            <framework src="XCDYouTubeKit" type="podspec" spec="~> 2.7" />
-            <header-file src="platforms/ios/YoutubeVideoPlayerProject/Plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/YoutubeVideoPlayer.h"/>
-            <source-file src="platforms/ios/YoutubeVideoPlayerProject/Plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/YoutubeVideoPlayer.m"/>
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="XCDYouTubeKit" git="https://github.com/armendh/XCDYouTubeKit.git" branch="master"/>
+            </pods>
+        </podspec>
 
-            <framework src="MediaPlayer.framework"/>
-            <framework src="AVFoundation.framework"/>
-            <framework src="JavaScriptCore.framework"/>
+        <header-file src="platforms/ios/YoutubeVideoPlayerProject/Plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/YoutubeVideoPlayer.h"/>
+        <source-file src="platforms/ios/YoutubeVideoPlayerProject/Plugins/com.bunkerpalace.cordova.YoutubeVideoPlayer/YoutubeVideoPlayer.m"/>
 
-        </platform>
+        <framework src="MediaPlayer.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="JavaScriptCore.framework"/>
 
-    </plugin>
+    </platform>
+
+</plugin>
